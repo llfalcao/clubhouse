@@ -1,8 +1,17 @@
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
+const mongoose = require('mongoose');
 const path = require('path');
 
+// Routes
 const indexRouter = require('./routes/index');
+
+// Database connection
+const mongodb = process.env.MONGODB_URL;
+mongoose.connect(mongodb, { useUnifiedTopology: true, useNewUrlParser: true });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 
 const app = express();
 
@@ -14,7 +23,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes
+// Route Handler
 app.use('/', indexRouter);
 
 // 404 Handler

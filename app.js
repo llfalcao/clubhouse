@@ -6,6 +6,7 @@ const path = require('path');
 
 // Routes
 const indexRouter = require('./routes/index');
+const signUpRouter = require('./routes/sign-up');
 
 // Database connection
 const mongodb = process.env.MONGODB_URL;
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Route Handler
 app.use('/', indexRouter);
+app.use('/sign-up', signUpRouter);
 
 // 404 Handler
 app.use((req, res, next) => next(createError(404)));

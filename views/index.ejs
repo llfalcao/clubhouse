@@ -36,5 +36,21 @@
 
     <h1 class="text-3xl font-bold underline"><%= title %></h1>
     <p>Welcome to <%= title %></p>
+
+    <% if (typeof(user) !== 'undefined') { %>
+    <div class="shadow flex flex-col max-w-lg dark:text-black">
+      <input class="px-5 py-2 rounded-t-lg border" placeholder="Title" />
+      <textarea
+        class="p-5 rounded-b-lg focus:outline-none focus:shadow-outline"
+        placeholder="Share your message!"
+      ></textarea>
+      <button
+        class="bg-blue-500 active:bg-blue-600 text-white my-2 px-4 py-2 rounded"
+        type="button"
+      >
+        Submit
+      </button>
+    </div>
+    <% } %>
   </body>
 </html>

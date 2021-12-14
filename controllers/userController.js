@@ -46,7 +46,8 @@ async function hashPassword(password) {
 // Handle sign-up form data on POST
 exports.userCreatePOST = [
   signUpFormValidation,
-
+  // TODO: Not allow spaces
+  // TODO: Check if username already exists in the database
   async (req, res, next) => {
     const errors = validationResult(req);
     const user = new User({

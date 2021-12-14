@@ -6,6 +6,25 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="dark:bg-zinc-900 dark:text-white">
+    <% if (typeof(user) !== 'undefined') { %>
+    <a href="/logout"
+      ><button
+        class="bg-blue-500 active:bg-blue-600 text-white px-4 py-2 rounded"
+        type="button"
+      >
+        Sign Out
+      </button></a
+    >
+    <% } else { %>
+    <a href="/sign-in"
+      ><button
+        class="bg-blue-500 active:bg-blue-600 text-white px-4 py-2 rounded"
+        type="button"
+      >
+        Sign in
+      </button></a
+    >
+    <% } %>
     <a href="/sign-up"
       ><button
         class="bg-blue-500 active:bg-blue-600 text-white px-4 py-2 rounded"

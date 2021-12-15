@@ -18,10 +18,7 @@ const signUpFormValidation = [
     .trim()
     .isLength({ min: 3, max: 50 }),
   body('password', 'The password must contain at least 8 characters.').isLength(
-    {
-      min: 8,
-      max: 50,
-    },
+    { min: 8, max: 50 },
   ),
   body('confirmPassword').custom((value, { req }) => {
     if (value !== req.body.password) {

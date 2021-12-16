@@ -24,7 +24,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 const app = express();
 // View engine
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'pug');
 
 // Middlewares
 app.use(
@@ -67,6 +67,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
+  console.log(req.user);
   res.locals.currentUser = req.user;
   next();
 });

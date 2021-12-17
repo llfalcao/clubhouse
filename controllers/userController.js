@@ -69,3 +69,36 @@ exports.userCreatePOST = [
     }
   },
 ];
+
+// Display user upgrade form on GET
+exports.userUpgradeGET = (req, res) => {
+  if (!res.locals.currentUser) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('upgrade', {
+    title: 'Upgrade membership',
+    user: res.locals.currentUser,
+  });
+};
+
+// Handle upgrade form on POST
+exports.userUpgradePOST = (req, res) => {
+  if (req.body.secret === process.env.MEMBERSHIP_UPGRADE_SECRET) {
+    User.updateOne(
+      { _id: res.locals.currentUser._id },
+      { membership_status: 'member' },
+    ).exec((err) => {
+      if (err) return next(err);
+      res.redirect('/');
+    });
+  } else {
+    res.render('upgrade', {
+      title: 'Upgrade membership',
+      user: res.locals.currentUser,
+      error:
+        'Incorrect passcode. Tip: it\'s lowercase and it contains at least 2 "L"s',
+    });
+  }
+};

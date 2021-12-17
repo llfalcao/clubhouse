@@ -5,6 +5,7 @@ const express = require('express');
 const path = require('path');
 const passport = require('passport');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 
@@ -14,6 +15,7 @@ const User = require('./models/User');
 const indexRouter = require('./routes/index');
 const signUpRouter = require('./routes/signUp');
 const signInRouter = require('./routes/signIn');
+const upgradeRouter = require('./routes/upgrade');
 
 // Database connection
 const mongodb = process.env.MONGODB_URL;
@@ -27,6 +29,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // Middlewares
+app.use(cookieParser());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -36,7 +39,7 @@ app.use(
 );
 
 passport.use(
-  new LocalStrategy(async (username, password, done) => {
+  new LocalStrategy((username, password, done) => {
     User.findOne({ username }, (err, user) => {
       if (err) {
         return done(err);
@@ -67,7 +70,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  console.log(req.user);
   res.locals.currentUser = req.user;
   next();
 });
@@ -76,6 +78,7 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 app.use('/sign-up', signUpRouter);
 app.use('/sign-in', signInRouter);
+app.use('/upgrade', upgradeRouter);
 
 // 404 Handler
 app.use((req, res, next) => next(createError(404)));

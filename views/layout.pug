@@ -1,0 +1,41 @@
+html
+  head
+    title Clubhouse - #{ title }
+    link(rel="stylesheet", href="/styles/style.css")
+    link(rel="icon", href="/images/favicon.ico")
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+    link(
+      rel="stylesheet",
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+    )
+    script(src="https://cdn.tailwindcss.com")
+  body.m-auto.flex.flex-col.items-center.h-screen.bg-zinc-900(
+    class="dark:text-gray-200"
+  )
+    header.w-full.p-3.text-right.flex.justify-between
+      a.text-2xl.brand(href="/") clubhouse
+      if user
+        p= user.username
+        a(href="/logout")
+          button.bg-violet-600.text-white.px-4.py-2.rounded(
+            class="active:bg-violet-700",
+            type="button"
+          )
+            | Sign Out
+
+        if user.membership_status === 'user'
+          a(href="/upgrade")
+            button.bg-violet-600.text-white.px-4.py-2.rounded(
+              class="active:bg-violet-700",
+              type="button"
+            )
+              | Upgrade
+      else
+        a.mx-1(href="/sign-in")
+          button.bg-violet-600.text-white.px-4.py-2.rounded(
+            class="active:bg-violet-700",
+            type="button"
+          )
+            | Sign in
+    block content

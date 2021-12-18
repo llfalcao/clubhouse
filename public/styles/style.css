@@ -3,3 +3,31 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.brand {
+  font-family: "Poppins", sans-serif;
+}
+
+.message:first-child {
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+.message:last-child {
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+
+.custom-bg {
+  background: url("../images/bg-sign-in.jpg") center 30% / cover no-repeat,
+    linear-gradient(
+      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 0.7) 70px,
+      transparent 200px,
+      transparent
+    );
+
+  background-blend-mode: overlay;
+
+  z-index: -1000;
+}

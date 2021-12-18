@@ -1,43 +1,42 @@
-html
-  head
-    title= title
-    link(rel='stylesheet' href='/styles/style.css')
-    script(src='https://cdn.tailwindcss.com')
-  body(class='dark:bg-zinc-900 dark:text-white')
-    if user
-      p= user.username
-      a(href='/logout')
-        button(class='bg-blue-500 text-white px-4 py-2 rounded active:bg-blue-600' type='button')
-          | Sign Out
-      
-      if user.membership_status === 'user'
-        a(href='/upgrade')
-          button(class='bg-blue-500 text-white px-4 py-2 rounded active:bg-blue-600' type='button')
-            | Upgrade
-    else
-      a(href='/sign-in')
-        button(class='bg-blue-500 text-white px-4 py-2 rounded active:bg-blue-600' type='button')
-          | Sign in
-      a(href='/sign-up')
-        button(class='bg-blue-500 text-white px-4 py-2 rounded active:bg-blue-600' type='button')
-          | Sign up
+extends layout
 
-    h1.text-3xl.font-bold.underline= title
-    p Welcome to #{title}
-    
+block content
+  main.w-full(class="dark:bg-zinc-900")
+    h1= title
+    p Welcome to #{ title }
+
     if user
-      form(class='flex flex-col max-w-lg m-3 dark:text-black' method='POST')
-        input(class='px-5 py-2 rounded-t-lg border border-zinc-500 placeholder-zinc-400 focus:outline-none focus:border-sky-600 focus:ring-1 dark:bg-zinc-600 dark:text-white' type='text' name='title' placeholder='Title' value='')
-        textarea(class='p-5 rounded-b-lg border border-zinc-500 border-t-none placeholder-zinc-400 focus:outline-none focus:border-sky-600 focus:ring-1 dark:bg-zinc-600 dark:text-white' name='text' placeholder='Share your message!')
-        input(type='hidden' name='user' value=user)
-        div(class='md:flex justify-content-right')
-          div(class='md:w-2/3 dark:text-white p-3')
-          button(class='shadow bg-blue-500 text-white my-2 px-4 py-2 rounded max-w-xs active:bg-blue-600 md:w-1/3' type='submit')
+      form.text-3xl.font-bold.underline.px-2.w-full.mx-auto.flex.flex-col.max-w-lg.m-3(
+        class="dark:text-black",
+        method="POST"
+      )
+        input.px-5.py-2.rounded-t-lg.border.border-zinc-500.placeholder-zinc-400(
+          class="focus:outline-none focus:border-sky-600 focus:ring-1 dark:bg-zinc-600 dark:text-white",
+          type="text",
+          name="title",
+          placeholder="Title",
+          value=""
+        )
+        textarea.p-5.rounded-b-lg.border.border-zinc-500.border-t-none.placeholder-zinc-400(
+          class="focus:outline-none focus:border-sky-600 focus:ring-1 dark:bg-zinc-600 dark:text-white",
+          name="text",
+          placeholder="Share your message!"
+        )
+        input(type="hidden", name="user", value=user)
+        div.justify-content-right(class="md:flex")
+          div.p-3(class="md:w-2/3 dark:text-white")
+          button.shadow.bg-blue-500.text-white.my-2.px-4.py-2.rounded.max-w-xs(
+            class="active:bg-blue-600 md:w-1/3",
+            type="submit"
+          )
             | Submit
-    
+
     if messages
-      ul
+      ul.w-full.mx-auto.flex.flex-col.max-w-xl.px-3
         each msg of messages
-          li
+          li.border.border-zinc-500.p-5.bg-neutral-900.text-gray-300.message
             p= msg.text
-            p= msg.author.membership_status === 'member' ? msg.author.username : 'Anonymous'
+            p.font-bold.text-sm= msg.author.membership_status === "member" ? msg.author.username : "Anonymous"
+            p= msg.timestamp_formatted
+
+    p.mx-auto.w-max.text-xl.my-5 There are no more posts.

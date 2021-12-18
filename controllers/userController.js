@@ -73,7 +73,7 @@ exports.userCreatePOST = [
 // Display user upgrade form on GET
 exports.userUpgradeGET = (req, res) => {
   if (!res.locals.currentUser) {
-    res.redirect('/');
+    res.redirect('/sign-in');
     return;
   }
 

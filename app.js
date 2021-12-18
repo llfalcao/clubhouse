@@ -70,6 +70,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
+  console.log(req.user);
   res.locals.currentUser = req.user;
   next();
 });

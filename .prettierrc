@@ -1,3 +1,5 @@
 {
-  "pugExplicitDiv": true
+  "pugExplicitDiv": true,
+  "singleQuote": true,
+  "trailingComma": "all"
 }

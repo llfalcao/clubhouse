@@ -5,31 +5,31 @@ block content
   main.w-full.h-full
     div.font-bold.w-full.mt-20
       form.border.border-gray-700.shadow-sm.shadow-purple-500.rounded.rounded-md.px-8.pt-6.pb-8.mb-4.mx-auto.max-w-xs(
-        class="dark:bg-neutral-900",
-        method="POST"
+        class='dark:bg-neutral-900',
+        method='POST'
       )
         h1.mb-4.text-xl.poppins= title
         div.mb-4
-          label.block.text-gray-300.text-sm.font-bold.mb-2(for="username") Username
+          label.block.text-gray-300.text-sm.font-bold.mb-2(for='username') Username
           input#username.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
-            type="text",
-            name="username",
-            placeholder="Username"
+            type='text',
+            name='username',
+            placeholder='Username'
           )
         div.mb-6
-          label.block.text-gray-300.text-sm.font-bold.mb-2(for="password") Password
+          label.block.text-gray-300.text-sm.font-bold.mb-2(for='password') Password
           input#password.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.mb-2.leading-tight(
-            type="password",
-            name="password",
-            placeholder="********"
+            type='password',
+            name='password',
+            placeholder='********'
           )
-          a.text-sm.font-normal.pr-2.text-gray-200(href="#", class="hover:underline") Forgot your password?
+          a.text-sm.font-normal.pr-2.text-gray-200(href='#', class='hover:underline') Forgot your password?
         div.flex.items-center.justify-between
           button.bg-violet-600.text-white.px-4.py-2.mb-3.rounded.w-full(
-            class="active:bg-violet-700",
-            type="submit"
+            class='active:bg-violet-700',
+            type='submit'
           ) Sign In
         a.font-normal.text-sm.mt-2.text-cyan-300(
-          href="/sign-up",
-          class="hover:underline"
+          href='/sign-up',
+          class='hover:underline'
         ) No account? Sign up!

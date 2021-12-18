@@ -1,28 +1,27 @@
 extends layout
 
 block content
-  main.w-full.h-full.p-3(class='dark:bg-zinc-800 md:p-0')
+  main.w-full.h-full.p-3(class='md:p-0')
     if user
       form.font-bold.w-full.mx-auto.flex.flex-col.w-full(
         class='dark:text-black md:w-9/12 md:mt-5',
         method='POST'
       )
-        input#post-title.px-5.py-2.rounded-t-lg.border.border-zinc-500.placeholder-zinc-400(
-          class='focus:outline-none focus:border-sky-600 focus:ring-1 dark:bg-zinc-600 dark:text-white',
+        input#post-title.px-5.py-2.rounded-t-lg.border.border-gray-600.placeholder-zinc-400(
+          class='focus:outline-none focus:border-sky-600 focus:ring-1 dark:bg-zinc-900 dark:text-white',
           type='text',
           name='title',
           placeholder='Title',
           value=''
         )
-        textarea#post-message.p-5.rounded-b-lg.border.border-zinc-500.border-t-none.placeholder-zinc-400(
-          class='focus:outline-none focus:border-sky-600 focus:ring-1 dark:bg-zinc-600 dark:text-white',
+        textarea#post-message.p-5.rounded-b-lg.border.border-gray-600.border-t-none.placeholder-zinc-400(
+          class='focus:outline-none focus:border-sky-600 focus:ring-1 dark:bg-zinc-900 dark:text-white',
           name='text',
           placeholder='Share your message!'
         )
         input(type='hidden', name='user', value=user)
-        div.justify-content-right(class='md:flex')
-          div.p-3(class='md:w-4/5')
-          button.font-semibold.shadow.bg-violet-600.text-gray-200.my-2.px-4.py-2.rounded.max-w-xs(
+        div.w-full.flex.justify-end
+          button.w-full.font-semibold.shadow.shadow-md.shadow-gray-900.bg-violet-600.text-gray-200.my-3.px-4.py-2.rounded.btn-text-shadow(
             class='active:bg-violet-700 md:w-1/5',
             type='submit'
           )
@@ -32,21 +31,22 @@ block content
     if messages
       ul.flex.flex-wrap.mx-auto(class='md:w-9/12 md:gap-5')
         each msg of messages
-          li.w-full.border.border-zinc-500.p-5.shadow-sm.shadow-purple-500.shrink-0(
-            class='first:rounded-md first:rounded-b-none last:rounded-b-md md:max-w-xs md:rounded md:rounded-md md:first:rounded-b-md'
+          li.w-full.p-5.border-b.border-b-gray-500.shrink-0.flex.flex-col.message(
+            class='first:rounded-md first:rounded-b-none last:rounded-b-md md:max-w-xs md:rounded md:rounded-md md:first:rounded-b-md md:border-0'
           )
             p.mb-3= msg.text
-            if user && user.membership_status === 'member'
-              a.font-bold.text-sm(href='#')
-                span.align-bottom @
-                span= msg.author.username
-            else
-              a.font-bold.text-sm(
-                href='/upgrade',
-                title='Upgrade your membership to reveal usernames!'
-              )
-                span by #{ ' ' }
-                span.bg-gray-200.rounded Anonymous User
-            p.text-sm.text-gray-400= msg.timestamp_formatted
+            div.mt-auto
+              if user && user.membership_status === 'member'
+                a.font-bold.text-sm(href='#')
+                  span.align-bottom @
+                  span= msg.author.username
+              else
+                a.font-bold.text-sm(
+                  href='/upgrade',
+                  title='Upgrade your membership to reveal usernames!'
+                )
+                  span by #{ ' ' }
+                  span.bg-gray-200.rounded Anonymous User
+            p.text-sm.text-gray-300= msg.timestamp_formatted
 
-    p.mx-auto.w-max.text-xl.my-10 There are no more posts.
+    p.mx-auto.w-max.text-xl.my-10.msg-no-posts There are no more posts.

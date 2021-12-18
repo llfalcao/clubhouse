@@ -12,7 +12,9 @@ html
     script(src='https://cdn.tailwindcss.com')
   body.m-auto.flex.flex-col.items-center.bg-zinc-900(class='dark:text-gray-200')
     header.w-full.p-3.text-right.flex.justify-between
-      a.text-2xl.brand(href='/') clubhouse
+      a.text-2xl.brand.ml-7.flex.items-center.gap-1(href='/')
+        img.h-6.invert(src='/images/favicon.ico', alt='')
+        span clubhouse
       if user
         div
           a.font-semibold.mr-6(href='#') @#{ user.username }

@@ -8,7 +8,11 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.custom-bg {
+main {
+  background: #242038;
+}
+
+.signin-bg {
   background: url('../images/bg-sign-in.jpg') center 30% / cover no-repeat,
     linear-gradient(
       rgba(0, 0, 0, 1),
@@ -19,4 +23,19 @@
 
   background-blend-mode: overlay;
   z-index: -1000;
+}
+
+/* User messages */
+.message {
+  background: #393358;
+  box-shadow: 0 2px 4px 0 #000 !important;
+}
+
+/* Message at the bottom of the homepage */
+.msg-no-posts {
+  text-shadow: 0 2px 4px #000;
+}
+
+.btn-text-shadow {
+  text-shadow: 0 2px 1px #333;
 }

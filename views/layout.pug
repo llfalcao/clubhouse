@@ -13,13 +13,15 @@ html
   body.m-auto.flex.flex-col.items-center.bg-zinc-900.min-h-screen(
     class='dark:text-gray-200'
   )
-    header.w-full.p-3.text-right.flex.justify-between
-      a.text-2xl.brand.ml-7.flex.items-center.gap-1(href='/')
+    header.w-full.p-3.text-right.flex.justify-center.flex-wrap.gap-2(
+      class='sm:justify-between sm:gap-0'
+    )
+      a.text-2xl.brand.mx-7.flex.items-center.gap-1(href='/', class='sm:mr-0')
         img.h-6.invert(src='/images/favicon.ico', alt='')
         span clubhouse
       if user
-        div
-          a.font-semibold.mr-6(href='#') #{ user.first_name }
+        div.flex.justify-between.items-center(class='sm:block')
+          a.font-semibold.mr-6.hidden(href='#', class='sm:inline-block') #{ user.first_name }
           if user.membership_status === 'user'
             a(href='/upgrade')
               button.font-semibold.bg-violet-600.text-white.px-4.py-2.rounded.mx-2(

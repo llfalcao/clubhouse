@@ -70,8 +70,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  console.log(req.user);
-  res.locals.currentUser = req.user;
+  if (typeof req.user === 'undefined') {
+    return next();
+  }
+
+  res.locals.currentUser = {
+    first_name: req.user.first_name,
+    last_name: req.user.last_name,
+    username: req.user.username,
+    membership_status: req.user.membership_status,
+  };
   next();
 });
 

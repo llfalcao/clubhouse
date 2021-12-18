@@ -1,27 +1,24 @@
 extends layout
 
 block content
-  main.w-full
-    a(href='/')
-      button.bg-blue-500.text-white.px-4.py-2.rounded(
-        class='active:bg-blue-600',
-        type='button'
-      )
-        | Home (temp)
-    h1= title
-
-    form.font-bold.w-full.mx-auto.max-w-lg.flex.flex-col(method='POST')
+  div.w-full.h-full.absolute.signin-bg
+  main.w-full.h-full.bg-transparent
+    //- form.font-semibold.w-full.mx-auto.max-w-lg.flex.flex-col(method='POST')
+    form.shadow-sm.shadow-purple-500.rounded.rounded-md.p-6.mb-4.mx-auto.w-full(
+      class='dark:bg-neutral-900 md:w-max md:border md:border-gray-700',
+      method='POST'
+    )
+      h1.mb-4.text-xl= title
       //- First name
       div.mb-6(class='md:flex md:items-center')
         div(class='md:w-1/3')
-          label.block.text-gray-500.font-bold.mb-1.pr-4(
+          label.block.text-gray-300.font-semibold.mb-1.pr-4(
             class='md:text-right md:mb-0',
             for='first-name'
           )
             | First name
         div(class='md:w-2/3')
-          input#first-name.bg-gray-200.appearance-none.border-2.border-gray-200.rounded.w-full.py-2.px-4.text-gray-700.leading-tight(
-            class='focus:outline-none focus:bg-white focus:border-purple-500',
+          input#first-name.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
             type='text',
             name='first_name',
             value=user ? user.first_name : ''
@@ -29,13 +26,12 @@ block content
       //- Last Name
       div.mb-6(class='md:flex md:items-center')
         div(class='md:w-1/3')
-          label.block.text-gray-500.font-bold.mb-1.pr-4(
+          label.block.text-gray-300.font-semibold.mb-1.pr-4(
             class='md:text-right md:mb-0',
             for='last-name'
           ) Last name
         div(class='md:w-2/3')
-          input#last-name.bg-gray-200.appearance-none.border-2.border-gray-200.rounded.w-full.py-2.px-4.text-gray-700.leading-tight(
-            class='focus:outline-none focus:bg-white focus:border-purple-500',
+          input#last-name.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
             type='text',
             name='last_name',
             value=user ? user.last_name : ''
@@ -43,13 +39,12 @@ block content
       //- Username
       div.mb-6(class='md:flex md:items-center')
         div(class='md:w-1/3')
-          label.block.text-gray-500.font-bold.mb-1.pr-4(
+          label.block.text-gray-300.font-semibold.mb-1.pr-4(
             class='md:text-right md:mb-0',
             for='username'
           ) Username
         div(class='md:w-2/3')
-          input#username.bg-gray-200.appearance-none.border-2.border-gray-200.rounded.w-full.py-2.px-4.text-gray-700.leading-tight(
-            class='focus:outline-none focus:bg-white focus:border-purple-500',
+          input#username.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
             type='text',
             name='username',
             value=user ? user.username : ''
@@ -57,42 +52,36 @@ block content
       //- Password
       div.mb-6(class='md:flex md:items-center')
         div(class='md:w-1/3')
-          label.block.text-gray-500.font-bold.mb-1.pr-4(
+          label.block.text-gray-300.font-semibold.mb-1.pr-4(
             class='md:text-right md:mb-0',
             for='password'
           ) Password
         div(class='md:w-2/3')
-          input#password.bg-gray-200.appearance-none.border-2.border-gray-200.rounded.w-full.py-2.px-4.text-gray-700.leading-tight(
-            class='focus:outline-none focus:bg-white focus:border-purple-500',
+          input#password.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
             type='password',
             name='password'
           )
       //- Confirm password
       div.mb-6(class='md:flex md:items-center')
         div(class='md:w-1/3')
-          label.block.text-gray-500.font-bold.mb-1.pr-4(
+          label.block.text-gray-300.font-semibold.mb-1.pr-4(
             class='md:text-right md:mb-0',
             for='confirm-password'
           ) Confirm password
         div(class='md:w-2/3')
-          input#confirm-password.bg-gray-200.appearance-none.border-2.border-gray-200.rounded.w-full.py-2.px-4.text-gray-700.leading-tight(
-            class='focus:outline-none focus:bg-white focus:border-purple-500',
+          input#confirm-password.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
             type='password',
             name='confirmPassword'
           )
       //- Sign up button
-      div(class='md:flex md:items-center')
-        div(class='md:w-1/3')
-        div(class='md:w-2/3')
-          button.shadow.bg-purple-600.text-white.font-bold.py-2.px-4.rounded(
-            class='hover:bg-purple-500 active:bg-purple-600',
-            type='submit'
-          ) Sign Up
+      div.w-full.text-right
+        button.shadow.bg-violet-600.text-gray-200.font-semibold.py-2.px-3.rounded(
+          class='active:bg-violet-600 w-1/3',
+          type='submit'
+        ) Sign Up
 
       if errors
-        div.mb-6(class='md:flex md:items-center')
-          div(class='md:w-1/3')
-          ul(class='md:w-2/3')
-            each error of errors
-              li.text-sm
-                p= error.msg
+        ul.mt-3.text-red-600.list-disc(class='md:w-3/3')
+          each error of errors
+            li.text-sm
+              p= error.msg

@@ -10,7 +10,9 @@ html
       href='https://fonts.googleapis.com/css2?family=Poppins&display=swap'
     )
     script(src='https://cdn.tailwindcss.com')
-  body.m-auto.flex.flex-col.items-center.bg-zinc-900(class='dark:text-gray-200')
+  body.m-auto.flex.flex-col.items-center.bg-zinc-900.min-h-screen(
+    class='dark:text-gray-200'
+  )
     header.w-full.p-3.text-right.flex.justify-between
       a.text-2xl.brand.ml-7.flex.items-center.gap-1(href='/')
         img.h-6.invert(src='/images/favicon.ico', alt='')
@@ -25,13 +27,13 @@ html
             )
               | Sign out
 
-        if user.membership_status === 'user'
-          a(href='/upgrade')
-            button.font-semibold.bg-violet-600.text-white.px-4.py-2.rounded(
-              class='active:bg-violet-700',
-              type='button'
-            )
-              | Upgrade
+          if user.membership_status === 'user'
+            a(href='/upgrade')
+              button.font-semibold.bg-violet-600.text-white.px-4.py-2.rounded.ml-2(
+                class='active:bg-violet-700',
+                type='button'
+              )
+                | Upgrade
       else
         a.mx-1(href='/sign-in')
           button.font-semibold.bg-violet-600.text-white.px-4.py-2.rounded(

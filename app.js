@@ -75,6 +75,7 @@ app.use((req, res, next) => {
   }
 
   res.locals.currentUser = {
+    _id: req.user._id,
     first_name: req.user.first_name,
     last_name: req.user.last_name,
     username: req.user.username,

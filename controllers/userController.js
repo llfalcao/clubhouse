@@ -1,31 +1,50 @@
 const bcrypt = require('bcryptjs');
 const { body, validationResult } = require('express-validator');
+const passport = require('passport');
 const User = require('../models/User');
 
-// Display sign-up form on GET
-exports.userCreateGET = (req, res) => {
-  res.render('sign-up-form', { title: 'Sign Up' });
-};
+async function isUsernameAvailable(username) {
+  const isMatch = await User.findOne({ username }).exec();
+  if (isMatch) throw new Error();
+  return true;
+}
 
 const signUpFormValidation = [
-  body('first_name', 'The first name must have between 2 and 50 characters.')
+  body('first_name', 'First name required.')
     .trim()
-    .isLength({ min: 2, max: 50 }),
-  body('last_name', 'The last name must have between 2 and 50 characters.')
+    .isLength({ min: 2, max: 50 })
+    .withMessage('First name must contain 2 to 50 characters.'),
+
+  body('last_name', 'Last name required.')
     .trim()
-    .isLength({ min: 2, max: 50 }),
-  body('username', 'The username must have between 3 to 50 characters.')
+    .isLength({ min: 2, max: 50 })
+    .withMessage('Last name must contain 2 to 50 characters.'),
+
+  body('username', 'Username required.')
     .trim()
-    .isLength({ min: 3, max: 50 }),
-  body('password', 'The password must contain at least 8 characters.').isLength(
-    { min: 8, max: 50 },
-  ),
+    .isLength({ min: 2, max: 50 })
+    .withMessage('Username must contain 2 to 50 characters.')
+    .custom(async (username) => {
+      if (!username.match(/^[A-Za-z0-9]+$/)) {
+        throw new Error(
+          'Username must not contain spaces or special characters (e.g. !@#$)',
+        );
+      }
+      const isMatch = await User.findOne({ username }).exec();
+      if (isMatch) throw new Error('Username not available');
+
+      return true;
+    }),
+
+  body('password', 'Password required.')
+    .isLength({ min: 8 })
+    .withMessage('Password must contain at least 8 characters'),
+
   body('confirmPassword').custom((value, { req }) => {
     if (value !== req.body.password) {
       throw new Error('Passwords do not match.');
-    } else {
-      return true;
     }
+    return true;
   }),
 ];
 
@@ -40,11 +59,14 @@ async function hashPassword(password) {
   return hash;
 }
 
+// Display sign-up form on GET
+exports.userCreateGET = (req, res) => {
+  res.render('sign-up-form');
+};
+
 // Handle sign-up form data on POST
 exports.userCreatePOST = [
   signUpFormValidation,
-  // TODO: Not allow spaces
-  // TODO: Check if username already exists in the database
   async (req, res, next) => {
     const errors = validationResult(req);
     const user = new User({
@@ -57,14 +79,16 @@ exports.userCreatePOST = [
 
     if (!errors.isEmpty()) {
       res.render('sign-up-form', {
-        title: 'Sign Up',
-        user,
+        userInfo: user,
         errors: errors.array(),
       });
     } else {
       user.save((err) => {
         if (err) return next(err);
-        res.redirect('/');
+        req.logIn(user, (err) => {
+          if (err) return next(err);
+          return res.redirect('/');
+        });
       });
     }
   },
@@ -102,3 +126,44 @@ exports.userUpgradePOST = (req, res) => {
     });
   }
 };
+
+// Handle sign-in form on POST
+exports.userSignInPOST = [
+  body('username', 'Username required').notEmpty(),
+  body('password', 'Password required').notEmpty(),
+  (req, res, next) => {
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      errors = errors.array();
+      return res.render('sign-in', {
+        username: req.body.username,
+        usernameError: errors.find((el) => el.param === 'username'),
+        passwordError: errors.find((el) => el.param === 'password'),
+      });
+    }
+
+    passport.authenticate('local', (err, user, info) => {
+      if (err) return next(err);
+
+      if (!user && info.field === 'username') {
+        return res.render('sign-in', {
+          username: req.body.username,
+          usernameError: { msg: info.message },
+        });
+      }
+
+      if (!user && info.field === 'password') {
+        return res.render('sign-in', {
+          username: req.body.username,
+          passwordError: { msg: info.message },
+        });
+      }
+
+      req.logIn(user, (err) => {
+        if (err) return next(err);
+        return res.redirect('/');
+      });
+    })(req, res, next);
+  },
+];

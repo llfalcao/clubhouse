@@ -24,13 +24,13 @@ html
           a.font-semibold.mr-6.hidden(href='#', class='sm:inline-block') #{ user.first_name }
           if user.membership_status === 'user'
             a(href='/upgrade')
-              button.font-semibold.bg-violet-600.text-white.px-4.py-2.rounded.mx-2(
+              button.font-semibold.bg-violet-600.text-gray-200.px-4.py-2.rounded.mx-2(
                 class='active:bg-violet-700',
                 type='button'
               )
                 | Upgrade
           a(href='/logout')
-            button.font-semibold.bg-violet-600.text-white.px-4.py-2.rounded(
+            button.font-semibold.bg-violet-600.text-gray-200.px-4.py-2.rounded(
               class='active:bg-violet-700',
               type='button'
             )
@@ -38,7 +38,7 @@ html
 
       else
         a.mx-1(href='/sign-in')
-          button.font-semibold.bg-violet-600.text-white.px-4.py-2.rounded(
+          button.font-semibold.bg-violet-600.text-gray-200.px-4.py-2.rounded(
             class='active:bg-violet-700',
             type='button'
           )

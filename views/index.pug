@@ -7,22 +7,22 @@ block content
         class='dark:text-black md:w-9/12 md:mt-5',
         method='POST'
       )
-        input#post-title.px-5.py-2.rounded-t-lg.border.border-gray-600.placeholder-zinc-400(
-          class='focus:outline-none focus:border-sky-600 focus:ring-1 dark:bg-zinc-900 dark:text-white',
+        input#post-title.px-5.py-2.rounded-t-lg.border.border-gray-600.placeholder-zinc-400.text-gray-200(
+          class='focus:outline-none focus:border-sky-600 focus:ring-1 dark:bg-zinc-900',
           type='text',
           name='title',
           placeholder='Title',
           value=message ? message.title : ''
         )
-        textarea#post-message.p-5.rounded-b-lg.border.border-gray-600.border-t-none.placeholder-zinc-400(
-          class='focus:outline-none focus:border-sky-600 focus:ring-1 dark:bg-zinc-900 dark:text-white',
+        textarea#post-message.p-5.rounded-b-lg.border.border-gray-600.border-t-none.placeholder-zinc-400.text-gray-200(
+          class='focus:outline-none focus:border-sky-600 focus:ring-1 dark:bg-zinc-900',
           name='text',
           placeholder='Share your message!'
         )= message ? message.text : ''
         input(type='hidden', name='user', value=user)
         div.w-full.flex.justify-end.items-center
           if errors
-            ul.mr-auto.pl-5.text-gray-200.font-normal.text-sm.text-red-400.list-disc
+            ul.mr-auto.pl-5.text-gray-200.font-normal.text-sm.text-red-500.list-disc
               each error of errors
                 li= error.msg
           button.w-full.font-semibold.shadow.shadow-md.shadow-gray-900.bg-violet-600.text-gray-200.my-3.px-4.py-2.rounded.btn-text-shadow(

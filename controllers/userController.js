@@ -103,7 +103,7 @@ exports.userUpgradeGET = (req, res) => {
 };
 
 // Handle upgrade form on POST
-exports.userUpgradePOST = (req, res) => {
+exports.userUpgradePOST = (req, res, next) => {
   if (req.body.secret === process.env.MEMBERSHIP_UPGRADE_SECRET) {
     User.updateOne(
       { _id: res.locals.currentUser._id },
@@ -118,6 +118,35 @@ exports.userUpgradePOST = (req, res) => {
       user: res.locals.currentUser,
       error:
         'Incorrect passcode. Tip: it\'s lowercase and it contains at least 2 "L"s',
+    });
+  }
+};
+
+// Display admin upgrade form on GET
+exports.userAdminUpgradeGET = (req, res) => {
+  if (!res.locals.currentUser) {
+    return res.redirect('/sign-in');
+  }
+  res.render('admin', {
+    title: 'Clubhouse | Admin',
+    user: res.locals.currentUser,
+  });
+};
+
+// Handle admin upgrade form on POST
+exports.userAdminUpgradePOST = (req, res, next) => {
+  if (req.body.secret === process.env.ADMIN_SECRET) {
+    User.updateOne({ _id: res.locals.currentUser._id }, { isAdmin: true }).exec(
+      (err) => {
+        if (err) return next(err);
+        res.redirect('/');
+      },
+    );
+  } else {
+    res.render('upgrade', {
+      title: 'Clubhouse | Admin',
+      user: res.locals.currentUser,
+      error: 'Incorrect passcode.',
     });
   }
 };

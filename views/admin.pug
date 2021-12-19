@@ -3,17 +3,17 @@ extends layout
 block content
   main.w-full.h-full.bg-transparent.flex.flex-col
     div.flex.flex-col.justify-center.items-center.gap-5.my-10.mx-auto(
-      class='w-11/12 md:w-6/12 md:flex-row md:items-start'
+      class='w-11/12 md:w-6/12'
     )
       img.hidden(
         class='sm:w-1/4 sm:block',
         src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjRkZGRkZGIj48cGF0aCBkPSJNMTIgMThjLTEuMTA0IDAtMi0uODk2LTItMnMuODk2LTIgMi0yIDIgLjg5NiAyIDItLjg5NiAyLTIgMnptMC0xMGMtMS4wNjIgMC0yLjA3My4yMTEtMyAuNTg3di0zLjU4N2MwLTEuNjU0IDEuMzQ2LTMgMy0zczMgMS4zNDYgMyAzdjFoMnYtMWMwLTIuNzYxLTIuMjM4LTUtNS01LTIuNzYzIDAtNSAyLjIzOS01IDV2NC43NjFjLTEuODI3IDEuNDY2LTMgMy43MTQtMyA2LjIzOSAwIDQuNDE4IDMuNTgyIDggOCA4czgtMy41ODIgOC04LTMuNTgyLTgtOC04em0wIDE0Yy0zLjMxMyAwLTYtMi42ODctNi02czIuNjg3LTYgNi02IDYgMi42ODcgNiA2LTIuNjg3IDYtNiA2eiIvPjwvc3ZnPg==',
         alt=''
       )
-      h1.text-2xl.pt-2.font-semibold(class='w-10/12 md:w-3/4 md:text-4xl')
-        | Upgrade today and have exclusive access to all clubs, as well as seeing all the usernames.
+      h1.text-2xl.pt-2.font-semibold.text-center(class='w-10/12 md:w-2/4 md:text-4xl')
+        | Admin Area
     form.mx-auto(method='POST', class='w-10/12 md:w-4/12')
-      label Enter the secret passcode to become a Member
+      label Enter the secret passcode to become an admin:
       div.flex.flex-col.my-4(class='md:flex-row')
         input.p-2.text-zinc-800.rounded.w-full(
           class='md:w-3/4 md:rounded-r-none',

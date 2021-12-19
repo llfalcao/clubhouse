@@ -61,7 +61,7 @@ async function hashPassword(password) {
 
 // Display sign-up form on GET
 exports.userCreateGET = (req, res) => {
-  res.render('sign-up-form');
+  res.render('sign-up-form', { title: 'Clubhouse | Sign up' });
 };
 
 // Handle sign-up form data on POST
@@ -79,6 +79,7 @@ exports.userCreatePOST = [
 
     if (!errors.isEmpty()) {
       res.render('sign-up-form', {
+        title: 'Clubhouse | Sign up',
         userInfo: user,
         errors: errors.array(),
       });
@@ -102,7 +103,7 @@ exports.userUpgradeGET = (req, res) => {
   }
 
   res.render('upgrade', {
-    title: 'Upgrade membership',
+    title: 'Clubhouse | Upgrade membership',
     user: res.locals.currentUser,
   });
 };
@@ -119,7 +120,7 @@ exports.userUpgradePOST = (req, res) => {
     });
   } else {
     res.render('upgrade', {
-      title: 'Upgrade membership',
+      title: 'Clubhouse | Upgrade membership',
       user: res.locals.currentUser,
       error:
         'Incorrect passcode. Tip: it\'s lowercase and it contains at least 2 "L"s',
@@ -137,6 +138,7 @@ exports.userSignInPOST = [
     if (!errors.isEmpty()) {
       errors = errors.array();
       return res.render('sign-in', {
+        title: 'Clubhouse | Sign in',
         username: req.body.username,
         usernameError: errors.find((el) => el.param === 'username'),
         passwordError: errors.find((el) => el.param === 'password'),
@@ -148,6 +150,7 @@ exports.userSignInPOST = [
 
       if (!user && info.field === 'username') {
         return res.render('sign-in', {
+          title: 'Clubhouse | Sign in',
           username: req.body.username,
           usernameError: { msg: info.message },
         });
@@ -155,6 +158,7 @@ exports.userSignInPOST = [
 
       if (!user && info.field === 'password') {
         return res.render('sign-in', {
+          title: 'Clubhouse | Sign in',
           username: req.body.username,
           passwordError: { msg: info.message },
         });

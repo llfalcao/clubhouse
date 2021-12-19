@@ -1,16 +1,26 @@
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/styles/style.css')
-    script(src='https://cdn.tailwindcss.com')
-  body(class='dark:bg-zinc-900 dark:text-gray-200')
-    p Upgrade today and have exclusive access to all clubs, as well as seeing who posted what.
-    form(method='POST')
-      label Please enter the secret passcode:
-      input(
-        type='password',
-        name='secret',
-        placeholder='********',
-        class='dark:text-black'
+extends layout
+
+block content
+  main.w-full.h-full.bg-transparent.flex.flex-col
+    div.flex.flex-col.justify-center.items-center.gap-5.my-10.mx-auto(
+      class='w-11/12 md:w-6/12 md:flex-row md:items-start'
+    )
+      img.hidden(
+        class='sm:w-1/4 sm:block',
+        src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjRkZGRkZGIj48cGF0aCBkPSJNMTIgMThjLTEuMTA0IDAtMi0uODk2LTItMnMuODk2LTIgMi0yIDIgLjg5NiAyIDItLjg5NiAyLTIgMnptMC0xMGMtMS4wNjIgMC0yLjA3My4yMTEtMyAuNTg3di0zLjU4N2MwLTEuNjU0IDEuMzQ2LTMgMy0zczMgMS4zNDYgMyAzdjFoMnYtMWMwLTIuNzYxLTIuMjM4LTUtNS01LTIuNzYzIDAtNSAyLjIzOS01IDV2NC43NjFjLTEuODI3IDEuNDY2LTMgMy43MTQtMyA2LjIzOSAwIDQuNDE4IDMuNTgyIDggOCA4czgtMy41ODIgOC04LTMuNTgyLTgtOC04em0wIDE0Yy0zLjMxMyAwLTYtMi42ODctNi02czIuNjg3LTYgNi02IDYgMi42ODcgNiA2LTIuNjg3IDYtNiA2eiIvPjwvc3ZnPg==',
+        alt=''
       )
-      button(type='submit') Submit
+      h1.text-2xl.pt-7.font-semibold(class='w-10/12 md:w-3/4 md:text-4xl') Upgrade today and have exclusive access to all clubs, as well as seeing who posted what.
+    form.mx-auto(method='POST', class='w-10/12 md:w-4/12')
+      label Enter the secret passcode to become a Member
+      div.flex.flex-col.my-4(class='md:flex-row')
+        input.p-2.text-zinc-800.rounded.rounded-r-none(
+          class='w-3/4',
+          type='password',
+          name='secret',
+          placeholder='********'
+        )
+        button.bg-violet-600.text-gray-200.font-semibold.px-4.py-2.rounded.rounded-l-none.w-full(
+          class='active:bg-violet-700 w-1/4',
+          type='submit'
+        ) Submit

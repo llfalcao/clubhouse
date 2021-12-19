@@ -4,7 +4,7 @@ block content
   main.w-full.h-full.p-3(class='md:p-0')
     if user
       form.font-bold.w-full.mx-auto.flex.flex-col.w-full(
-        class='dark:text-black md:w-9/12 md:mt-5',
+        class='dark:text-black md:w-6/12 md:mt-5',
         method='POST'
       )
         input#post-title.px-5.py-2.rounded-t-lg.border.border-gray-600.placeholder-zinc-400.text-gray-200(
@@ -33,7 +33,7 @@ block content
 
     if messages
       div.mt-10.pb-10.w-full.messages-wrapper
-        h1.text-4xl.font-normal.text-center.mx-auto.pt-10.my-10.brand(class='md:w-9/12') Latest stories
+        h1.text-4xl.font-normal.text-center.mx-auto.my-10.brand(class='md:w-9/12') Latest stories
         ul.flex.justify-center.flex-wrap.mx-auto.messages(class='md:w-9/12 md:gap-5')
           each msg of messages
             li.w-full.p-5.border-b.border-b-gray-500.shrink-0.flex.flex-col.message(

@@ -61,7 +61,7 @@ async function hashPassword(password) {
 
 // Display sign-up form on GET
 exports.userCreateGET = (req, res) => {
-  res.render('sign-up-form', { title: 'Clubhouse | Sign up' });
+  res.render('sign-up', { title: 'Clubhouse | Sign up' });
 };
 
 // Handle sign-up form data on POST
@@ -78,7 +78,7 @@ exports.userCreatePOST = [
     });
 
     if (!errors.isEmpty()) {
-      res.render('sign-up-form', {
+      res.render('sign-up', {
         title: 'Clubhouse | Sign up',
         userInfo: user,
         errors: errors.array(),

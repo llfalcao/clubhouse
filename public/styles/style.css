@@ -17,8 +17,7 @@ main {
     linear-gradient(
       rgba(0, 0, 0, 1),
       rgba(0, 0, 0, 0.7) 70px,
-      transparent 200px,
-      transparent
+      transparent 200px
     );
 
   background-blend-mode: overlay;

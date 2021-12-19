@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  main.w-full.h-full.p-3(class='md:p-0')
+  main.w-full.min-h-screen.p-3(class='md:p-0')
     if user
       form.font-bold.w-full.mx-auto.flex.flex-col.w-full(
         class='dark:text-black md:w-6/12 md:mt-5',
@@ -32,7 +32,7 @@ block content
             | Submit
 
     if messages
-      div.mt-10.pb-10.w-full.messages-wrapper
+      div.mt-10.pb-10.w-full.min-h-screen.messages-wrapper
         h1.text-4xl.font-normal.text-center.mx-auto.my-10.brand(class='md:w-9/12') Latest stories
         ul.flex.justify-center.flex-wrap.mx-auto.messages(class='md:w-9/12 md:gap-5')
           each msg of messages

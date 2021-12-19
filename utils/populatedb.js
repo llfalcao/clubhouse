@@ -29,8 +29,9 @@ async function hashPassword(password) {
   const savedUsers = [];
 
   for await (let user of users) {
-    user.password = await hashPassword(user.password);
-    user = new User(user);
+    let randompassword = Math.random().toString(36).slice(-8);
+    const password = await hashPassword(randompassword);
+    user = new User({ ...user, password });
     await user.save();
     savedUsers.push(user);
     console.log('New user: ', user);

@@ -3,12 +3,6 @@ const { body, validationResult } = require('express-validator');
 const passport = require('passport');
 const User = require('../models/User');
 
-async function isUsernameAvailable(username) {
-  const isMatch = await User.findOne({ username }).exec();
-  if (isMatch) throw new Error();
-  return true;
-}
-
 const signUpFormValidation = [
   body('first_name', 'First name required.')
     .trim()

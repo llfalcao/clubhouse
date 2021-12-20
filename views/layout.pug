@@ -2,7 +2,7 @@ html
   head
     title #{ title }
     link(rel='stylesheet', href='/styles/style.css')
-    link(rel='icon', href='/images/favicon.ico')
+    link(rel='icon', href='/images/logo.ico')
     link(rel='preconnect', href='https://fonts.googleapis.com')
     link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin)
     link(
@@ -17,11 +17,18 @@ html
       class='sm:justify-between sm:gap-0'
     )
       a.text-2xl.brand.mx-7.flex.items-center.gap-1(href='/', class='sm:mr-0')
-        img.h-6.invert(src='/images/favicon.ico', alt='')
+        img.h-6.invert(src='/images/logo.ico', alt='')
         span clubhouse
       if user
         div.flex.justify-between.items-center(class='sm:block')
-          a.font-semibold.mr-6.hidden(href='#', class='sm:inline-block') #{ user.first_name }
+          if user.isAdmin
+            a.font-semibold.mr-6.text-orange-500.hidden(
+              href='#',
+              class='sm:inline-block'
+            )= user.first_name
+          else
+            #{console.log(user)}
+            a.font-semibold.mr-6.hidden(href='#', class='sm:inline-block')= user.first_name
           if user.membership_status === 'user'
             a(href='/upgrade')
               button.font-semibold.bg-violet-600.text-gray-200.px-4.py-2.rounded.mx-2(

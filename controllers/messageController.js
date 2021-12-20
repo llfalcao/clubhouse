@@ -57,3 +57,34 @@ exports.messageCreatePOST = [
     }
   },
 ];
+
+// Display message delete form on GET
+exports.messageDeleteGET = async (req, res, next) => {
+  const isAdmin = res.locals.currentUser;
+  if (isAdmin === undefined || !isAdmin) {
+    return res.redirect('/');
+  }
+
+  try {
+    const message = await Message.findOne({ _id: req.params.message })
+      .populate('author', 'username')
+      .exec();
+    res.render('messageDetail', {
+      title: 'Clubhouse | Remove message',
+      user: res.locals.currentUser,
+      message,
+    });
+  } catch (err) {
+    return next(err);
+  }
+};
+
+// Handle message delete form on POST
+exports.messageDeletePOST = async (req, res, next) => {
+  try {
+    await Message.deleteOne({ _id: req.params.message });
+    res.redirect('/');
+  } catch (err) {
+    return next(err);
+  }
+};

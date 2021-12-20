@@ -86,6 +86,7 @@ app.use((req, res, next) => {
     last_name: req.user.last_name,
     username: req.user.username,
     membership_status: req.user.membership_status,
+    isAdmin: req.user.isAdmin,
   };
   next();
 });

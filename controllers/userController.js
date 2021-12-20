@@ -117,7 +117,7 @@ exports.userUpgradePOST = (req, res, next) => {
       title: 'Clubhouse | Upgrade membership',
       user: res.locals.currentUser,
       error:
-        'Incorrect passcode. Tip: it\'s lowercase and it contains at least 2 "L"s',
+        "Incorrect passcode. In case someone is actually checking out this project, here's a tip: the author ;)",
     });
   }
 };
@@ -143,7 +143,7 @@ exports.userAdminUpgradePOST = (req, res, next) => {
       },
     );
   } else {
-    res.render('upgrade', {
+    res.render('admin', {
       title: 'Clubhouse | Admin',
       user: res.locals.currentUser,
       error: 'Incorrect passcode.',

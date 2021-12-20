@@ -36,13 +36,13 @@ block content
         h1.text-4xl.font-normal.text-center.mx-auto.my-10.brand(class='md:w-9/12') Latest stories
         ul.flex.justify-center.flex-wrap.mx-auto.messages(class='md:w-9/12 md:gap-5')
           each msg of messages
-            li.w-full.p-5.border-b.border-b-gray-500.shrink-0.flex.flex-col.message(
-              class='first:rounded-md first:rounded-b-none last:rounded-b-md md:max-w-md md:rounded md:rounded-md md:first:rounded-b-md md:border-0 md:w-auto'
+            li.relative.w-full.p-5.border-b.border-b-gray-500.shrink-0.flex.flex-col.message(
+              class='first:rounded-md first:rounded-b-none last:rounded-b-md md:max-w-md md:rounded-md md:first:rounded-b-md md:border-0 md:w-auto'
             )
               p.mb-2.font-semibold= msg.title
               p.mb-3= msg.text
               div.mt-auto
-                if user && user.membership_status === 'member'
+                if user && (user.membership_status === 'member' || user.isAdmin)
                   a.font-bold.text-sm(href='#')
                     span.align-bottom @
                     span= msg.author.username
@@ -54,4 +54,16 @@ block content
                     span.mr-1 by #{ ' ' }
                     span.bg-violet-300.rounded-lg.w-20.h-4
               p.text-sm.text-gray-300= msg.timestamp_formatted
+              if user && user.isAdmin
+                a(href=`/${msg._id}/delete`)
+                  button.absolute.top-2.right-2.fill-red-500(type='submit')
+                    svg(
+                      xmlns='http://www.w3.org/2000/svg',
+                      width='24',
+                      height='24',
+                      viewBox='0 0 24 24'
+                    )
+                      path(
+                        d='M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-12v-2h12v2z'
+                      )
         p.mx-auto.w-max.text-xl.my-10.msg-no-posts There are no more posts.

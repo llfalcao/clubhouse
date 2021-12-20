@@ -2,7 +2,7 @@
 
 ## About
 
-Web app where users can write anonymous posts. Only admins and those who become upgrade their membership status can view the author of any message.
+Web app where users can write anonymous posts. Only admins and those who upgrade their membership status can view the author of the messages.
 The project uses Node, Express, MongoDB, and Pug.
 
 Check it out! https://llfalcao-clubhouse.herokuapp.com/

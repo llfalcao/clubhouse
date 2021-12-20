@@ -34,10 +34,12 @@ block content
     if messages
       div.mt-10.pb-10.w-full.min-h-screen.messages-wrapper
         h1.text-4xl.font-normal.text-center.mx-auto.my-10.brand(class='md:w-9/12') Latest stories
-        ul.flex.justify-center.flex-wrap.mx-auto.messages(class='md:w-9/12 md:gap-5')
+        ul.max-w-screen-xl.flex.justify-center.flex-wrap.mx-auto.messages(
+          class='md:gap-5'
+        )
           each msg of messages
-            li.relative.w-full.p-5.border-b.border-b-gray-500.shrink-0.flex.flex-col.message(
-              class='first:rounded-md first:rounded-b-none last:rounded-b-md md:max-w-md md:rounded-md md:first:rounded-b-md md:border-0 md:w-auto'
+            li.relative.p-5.border-b.border-b-gray-500.shrink-0.flex.flex-col.message(
+              class='lg:max-w-lg lg:w-max w-11/12 first:rounded-md first:rounded-b-none last:rounded-b-md md:rounded-md md:first:rounded-b-md md:border-0'
             )
               p.mb-2.font-semibold= msg.title
               p.mb-3= msg.text

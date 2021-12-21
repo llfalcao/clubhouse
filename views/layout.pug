@@ -13,40 +13,45 @@ html
   body.m-auto.flex.flex-col.items-center.bg-zinc-900.min-h-screen(
     class='dark:text-gray-200'
   )
-    header.w-full.p-3.text-right.flex.justify-center.flex-wrap.gap-2(
-      class='sm:justify-between sm:gap-0'
+    header.w-full.p-7.px-0.text-right.flex.justify-between.flex-wrap.gap-0(
+      class='lg:p-3'
     )
-      a.text-2xl.brand.mx-7.flex.items-center.gap-1(href='/', class='sm:mr-0')
-        img.h-6.invert(src='/images/logo.ico', alt='')
+      a.text-4xl.brand.mx-7.flex.items-center.gap-1(
+        href='/',
+        class='sm:mr-0 lg:text-2xl'
+      )
+        img.h-8.invert(class='lg:h-6', src='/images/logo.ico', alt='')
         span clubhouse
       if user
         div.flex.justify-between.items-center(class='sm:block')
           if user.isAdmin
-            a.font-semibold.mr-6.text-orange-500.hidden(
+            a.text-3xl.font-semibold.mr-6.text-orange-500.hidden(
               href='#',
-              class='sm:inline-block'
+              class='sm:inline-block lg:text-base'
             )= user.first_name
           else
-            #{console.log(user)}
-            a.font-semibold.mr-6.hidden(href='#', class='sm:inline-block')= user.first_name
+            a.text-4xl.font-semibold.mr-6.hidden(
+              href='#',
+              class='sm:inline-block lg:text-base'
+            )= user.first_name
           if user.membership_status === 'user'
             a(href='/upgrade')
-              button.font-semibold.bg-violet-600.text-gray-200.px-4.py-2.rounded.mx-2(
-                class='active:bg-violet-700',
+              button.text-2xl.font-semibold.bg-violet-600.text-gray-200.py-4.px-8.rounded.mx-2(
+                class='active:bg-violet-700 lg:text-base lg:px-4 lg:py-2',
                 type='button'
               )
                 | Upgrade
           a(href='/logout')
-            button.font-semibold.bg-violet-600.text-gray-200.px-4.py-2.rounded(
-              class='active:bg-violet-700',
+            button.text-2xl.font-semibold.bg-violet-600.text-gray-200.py-4.px-8.rounded(
+              class='active:bg-violet-700 lg:text-base lg:px-4 lg:py-2',
               type='button'
             )
               | Sign out
 
       else
         a.mx-1(href='/sign-in')
-          button.font-semibold.bg-violet-600.text-gray-200.px-4.py-2.rounded(
-            class='active:bg-violet-700',
+          button.text-2xl.font-semibold.bg-violet-600.text-gray-200.py-4.px-8.rounded(
+            class='active:bg-violet-700 lg:text-base lg:px-4 lg:py-2',
             type='button'
           )
             | Sign in

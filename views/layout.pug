@@ -13,14 +13,13 @@ html
   body.m-auto.flex.flex-col.items-center.bg-zinc-900.min-h-screen(
     class='dark:text-gray-200'
   )
-    header.w-full.p-7.px-0.text-right.flex.justify-between.flex-wrap.gap-0(
-      class='lg:p-3'
-    )
-      a.text-4xl.brand.mx-7.flex.items-center.gap-1(
+    header.w-screen.p-7.flex.justify-between.flex-wrap(class='lg:p-3')
+      a.text-4xl.brand.mr-7.flex.items-center.gap-1(
         href='/',
         class='sm:mr-0 lg:text-2xl'
       )
-        img.h-8.invert(class='lg:h-6', src='/images/logo.ico', alt='')
+        div.h-8(class='lg:h-6')
+          img.h-full.invert(src='/images/logo.ico', alt='')
         span clubhouse
       if user
         div.flex.justify-between.items-center(class='sm:block')

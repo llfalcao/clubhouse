@@ -4,42 +4,53 @@ block content
   div.w-full.h-full.absolute.signin-bg
   main.w-full.h-full.bg-transparent
     div.w-full.mt-20
-      form.border.border-gray-700.shadow-sm.shadow-purple-500.rounded-md.px-8.pt-6.pb-8.mb-4.mx-auto.max-w-xs(
-        class='dark:bg-neutral-900',
+      form.border.border-gray-700.shadow-sm.shadow-purple-500.rounded-md.p-16.mb-4.mx-auto(
+        class='dark:bg-neutral-900 w-10/12 lg:max-w-xs lg:py-8 lg:px-6',
         method='POST'
       )
-        h1.mb-4.text-xl.font-semibold Sign in
-        div.mb-4
-          label.block.text-gray-300.text-sm.font-bold.mb-2(for='username') Username
-          input#username.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
+        h1.mb-10.text-6xl.font-semibold(class='lg:text-xl lg:mb-4') Sign in
+        //- Username
+        div.mb-6(class='lg:mb-2')
+          label.block.text-gray-300.text-4xl.font-bold.mb-2(
+            class='lg:text-sm',
+            for='username'
+          ) Username
+          input#username.shadow.appearance-none.border.rounded-md.w-full.py-8.px-3.text-4xl.text-gray-700(
+            class='lg:py-2 lg:text-sm lg:rounded',
             type='text',
             name='username',
             placeholder='Username',
             value=username ? username : ''
           )
           p.font-normal.text-red-500.text-sm.pt-1= usernameError ? usernameError.msg : ''
+        //- Password
         div.mb-6
-          label.block.text-gray-300.text-sm.font-bold.mb-2(for='password') Password
-          input#password.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
+          label.block.text-gray-300.text-4xl.font-bold.mb-2(
+            class='lg:text-sm',
+            for='password'
+          ) Password
+          input#password.shadow.appearance-none.border.rounded-md.w-full.py-8.px-3.text-4xl.text-gray-700.leading-tight(
+            class='lg:py-2 lg:text-sm lg:rounded',
             type='password',
             name='password',
             placeholder='********'
           )
           p.font-normal.text-red-500.text-sm.pt-1= passwordError ? passwordError.msg : ''
-          a.text-sm.font-normal.pr-2.mt-2.text-gray-200(
-            href='#',
-            class='hover:underline'
+          a.text-3xl.font-normal.pr-2.mt-8.text-gray-200(
+            class='hover:underline lg:text-sm lg:mt-2',
+            href='#'
           ) Forgot your password?
         div.flex.items-center.justify-between
-          button.bg-violet-600.text-gray-200.font-semibold.px-4.py-2.mb-3.rounded.w-full(
-            class='active:bg-violet-700',
+          button.bg-violet-600.text-gray-200.text-4xl.font-semibold.px-4.py-8.mb-3.rounded.w-full(
+            class='active:bg-violet-700 lg:py-2 lg:text-sm',
             type='submit'
           ) Sign in
-        a.font-normal.text-sm.mt-2.text-cyan-300(
-          href='/sign-up',
-          class='hover:underline'
+        a.font-normal.text-3xl.mt-2.text-cyan-300(
+          class='hover:underline lg:text-sm',
+          href='/sign-up'
         ) No account? Sign up!
-    a.absolute.right-2.bottom-2.text-xs(
+    a.absolute.bottom-2.left-2.text-xs(
+      class='lg:right-2',
       href='https://unsplash.com/photos/9yMSPi6u6XI',
       target='_blank'
     ) Photo by Alfons Morales on Unsplash

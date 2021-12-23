@@ -3,7 +3,7 @@ extends layout
 block content
   div.w-full.h-full.absolute.signin-bg
   main.w-full.h-full.bg-transparent
-    form.shadow-sm.shadow-purple-500.rounded-md.p-6.mb-4.mx-auto.w-full.bg-neutral-900(
+    form.border.border-gray-700.shadow-sm.shadow-purple-500.rounded-md.p-6.mb-4.mx-auto.w-full.bg-neutral-900(
       class='md:w-96 md:border md:border-gray-700',
       method='POST'
     )
@@ -17,7 +17,7 @@ block content
           )
             | First name
         div(class='md:w-2/3')
-          input#first-name.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
+          input#first-name.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
             type='text',
             name='first_name',
             value=userInfo ? userInfo.first_name : ''
@@ -30,7 +30,7 @@ block content
             for='last-name'
           ) Last name
         div(class='md:w-2/3')
-          input#last-name.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
+          input#last-name.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
             type='text',
             name='last_name',
             value=userInfo ? userInfo.last_name : ''
@@ -43,7 +43,7 @@ block content
             for='username'
           ) Username
         div(class='md:w-2/3')
-          input#username.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
+          input#username.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
             type='text',
             name='username',
             value=userInfo ? userInfo.username : ''
@@ -56,7 +56,7 @@ block content
             for='password'
           ) Password
         div(class='md:w-2/3')
-          input#password.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
+          input#password.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
             type='password',
             name='password'
           )
@@ -68,13 +68,13 @@ block content
             for='confirm-password'
           ) Confirm password
         div(class='md:w-2/3')
-          input#confirm-password.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
+          input#confirm-password.appearance-none.border.rounded.w-full.py-2.px-3.text-gray-700.leading-tight(
             type='password',
             name='confirmPassword'
           )
       //- Sign up button
       div.w-full.text-right
-        button.shadow.bg-violet-600.text-gray-200.font-semibold.py-2.px-3.rounded(
+        button.bg-violet-600.text-gray-200.font-semibold.py-2.px-3.rounded(
           class='active:bg-violet-600 w-1/3',
           type='submit'
         ) Sign up

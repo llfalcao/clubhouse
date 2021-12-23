@@ -67,7 +67,7 @@ passport.use(
 passport.serializeUser((user, done) => done(null, user.id));
 
 passport.deserializeUser((id, done) =>
-  User.findById(id, (err, user) => done(err, user)),
+  User.findById(id, { password: false }, (err, user) => done(err, user)),
 );
 
 app.use(passport.initialize());
@@ -79,15 +79,7 @@ app.use((req, res, next) => {
   if (typeof req.user === 'undefined') {
     return next();
   }
-
-  res.locals.currentUser = {
-    _id: req.user._id,
-    first_name: req.user.first_name,
-    last_name: req.user.last_name,
-    username: req.user.username,
-    membership_status: req.user.membership_status,
-    isAdmin: req.user.isAdmin,
-  };
+  res.locals.currentUser = req.user;
   next();
 });
 

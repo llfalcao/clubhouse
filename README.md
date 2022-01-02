@@ -9,4 +9,4 @@ Check it out! https://llfalcao-clubhouse.herokuapp.com/
 
 ![Login screen](/docs/login.png)
 ![Homepage](/docs/home.png)
-![Membership Upgrade page](/docs/upgrade.png)
+![Membership Upgrade page](/docs/upgrade2.png)

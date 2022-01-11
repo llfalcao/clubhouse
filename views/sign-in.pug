@@ -5,10 +5,10 @@ block content
   main.w-full.h-full.bg-transparent
     div.w-full.mt-20
       form.border.border-gray-700.shadow-sm.shadow-purple-500.rounded-md.p-16.mb-4.mx-auto(
-        class='dark:bg-neutral-900 w-10/12 lg:max-w-xs lg:py-8 lg:px-6',
+        class='bg-neutral-900 w-10/12 lg:max-w-xs lg:py-8 lg:px-6',
         method='POST'
       )
-        h1.mb-10.text-6xl.font-semibold(class='lg:text-xl lg:mb-4') Sign in
+        h1.mb-10.text-6xl.font-semibold.text-gray-300(class='lg:text-xl lg:mb-4') Sign in
         //- Username
         div.mb-6(class='lg:mb-2')
           label.block.text-gray-300.text-4xl.font-bold.mb-2(
@@ -49,7 +49,7 @@ block content
           class='hover:underline lg:text-sm',
           href='/sign-up'
         ) No account? Sign up!
-    a.absolute.bottom-2.left-2.text-xs(
+    a.absolute.bottom-2.left-2.text-xs.text-gray-300(
       class='lg:right-2',
       href='https://unsplash.com/photos/9yMSPi6u6XI',
       target='_blank'
